@@ -1,58 +1,46 @@
 <template>
-  <div class="navList">
-    <el-menu :default-active="activeRouter" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item v-for="(item, id) in navList" :key="id" :index="id.toString()">
-        {{item.title}}
-      </el-menu-item>
-    </el-menu>
-    <div class="line"></div>
+  <div id="tree">
   </div>
 </template>
 <script>
-import Logo from '~/components/Logo.vue'
-import {mapGetters, mapMutations} from 'vuex'
-
 export default {
-  components: {
-    Logo
-  },
-  mounted() {
-    let index = 0
-    for (let i = 0; i < this.navList.length; i++) {
-      if (this.$route.path === this.navList[i].url) {
-        this.SET_ROUTER(i.toString())
-        break
-      }
+  data() {
+    return {
+      myChart: null
     }
   },
-  computed: {
-    ...mapGetters(['navList', 'activeRouter'])
+  props: {
+    dataSource: {
+      default: function() {
+        return {}
+      },
+      type: Object
+    }
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.setTree()
+    })
+  },
+  watch: {
+    dataSource: function(val) {
+      this.setTree()
+    }
   },
   methods: {
-    ...mapMutations(['SET_ROUTER']),
-    handleSelect(key, keyPath) {
-      this.$router.push({
-        path: this.navList[key].url
-      })
+    setTree() {
+      if (this.dataSource) {
+        this.$echarts.tree('tree', 'name', this.dataSource)
+      }
     }
   }
 }
 </script>
 
 <style>
-.navList {
-  height: 60px;
-  line-height: 60px;
-}
-.navList ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-.navList .el-menu-item {
-  font-size: 20px;
-  color: #5a9367;
+#tree {
+  width: 100%;
+  height: 100%;
 }
 </style>

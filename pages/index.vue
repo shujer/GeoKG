@@ -3,10 +3,10 @@
     <div id="preview">
       <el-tabs type="border-card" tab-position="bottom" @tab-click="handleClick">
         <el-tab-pane label="图谱">
-          <Graph v-if="selected===0"/>
+          <Graph/>
         </el-tab-pane>
         <el-tab-pane label="地图">
-          <Map v-if="selected===1" :data="mapData" />
+          <Map :data="mapData" />
         </el-tab-pane>
       </el-tabs>
     </div>

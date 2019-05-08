@@ -1,22 +1,54 @@
 <template>
-    <div class="graph">
-    </div>
+  <div id="graph">
+  </div>
 </template>
 <script>
-import {mapGetters, mapMutations} from 'vuex'
 export default {
-  components: {},
-  mounted() {
-    console.log('graph')
+  data() {
+    return {
+      myChart: null
+    }
   },
-  computed: {},
-  methods: {}
+  props: {
+    dataSource: {
+      default: function() {
+        return {}
+      },
+      type: Object
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.setGraph()
+    })
+  },
+  watch: {
+    dataSource: function(val) {
+      this.setGraph()
+    },
+    graphType: function(val) {
+      this.setGraph()
+    }
+  },
+  methods: {
+    setGraph() {
+      if (this.dataSource.nodes) {
+        this.$echarts.graph(
+          'graph',
+          'name',
+          this.dataSource.categories,
+          this.dataSource.nodes,
+          this.dataSource.links
+        )
+      }
+    }
+  }
 }
 </script>
 
 <style>
-.map {
+#graph {
   width: 100%;
-  height: 300px;
+  height: 100%;
 }
 </style>

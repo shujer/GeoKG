@@ -9,6 +9,7 @@
 <script>
 import Nav from '~/components/Nav.vue'
 import Logo from '~/components/Logo.vue'
+import '@/plugins/echarts'
 export default {
   components: {
     Nav,
@@ -88,7 +89,12 @@ li {
     text-decoration: none;
 }
 
+a {
+  color: #5A9367;
+}
 
-
+a:active, a:visited, a:link, a:hover {
+  color: #35495e;
+}
 </style>
 
