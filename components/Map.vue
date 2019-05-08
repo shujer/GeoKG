@@ -25,25 +25,43 @@ export default {
     }
   },
   methods: {
-    addMessage(marker) {
-      this.map.addOverlay(marker);
-      
+    showMessage(point, i) {
+      let {name, has_picture} = this.data[i]
+      let href = `/view?name=${name}&entity=BuildingComplex`
+      let opt = {
+        width: 150,
+        height: 150,
+        title: `<a href=${href} target='_blank'><h5>${name}</h5></a>`
+      }
+      let infoWindow = new BMap.InfoWindow(
+        `<img style="float: left" id="imgDemo" src=${has_picture} width='150' height='150' />`,
+        opt
+      )
+      this.map.openInfoWindow(infoWindow, point)
     },
 
-    addMarker(point) {
-      let {name, location} = point
-      console.log(name, location)
+    addMessage(marker, point, i) {
+      this.map.addOverlay(marker)
+      var that = this
+      marker.addEventListener('mouseover', function(e) {
+        that.showMessage(point, i)
+      })
+    },
+
+    addMarker(data, i) {
+      let {name, location} = data
       if (!location) return
-      let mp = new BMap.Point(location.lng, location.lat)
+      let point = new BMap.Point(location.lng, location.lat)
       let label = new BMap.Label(name, {offset: new BMap.Size(20, -10)})
-      let marker = new BMap.Marker(mp)
+      let marker = new BMap.Marker(point)
       this.map.addOverlay(marker)
       marker.setLabel(label)
+      this.addMessage(marker, point, i)
     },
 
     addMarkers(data) {
       for (let i = 0; i < data.length; i++) {
-        this.addMarker(data[i])
+        this.addMarker(data[i], i)
       }
     },
 
@@ -65,10 +83,7 @@ export default {
         this.map.clearOverlays()
         this.addMarkers(this.data)
       })
-    },
-
-
-
+    }
   },
 
   mounted() {

@@ -32,7 +32,7 @@ export default {
   computed: {
     ...mapGetters(['mapData'])
   },
-  mounted() {
+  created() {
     this.queryMapData()
   },
   methods: {

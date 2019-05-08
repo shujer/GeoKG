@@ -10,7 +10,7 @@ const config = {
         password: 'sysu2018'// 管理员密码
     },
     imagePath: "~/opt/data/images/",
-    imageURL: "http://www.arckg.cn/sysu-image/",
+    imageURL: "https://www.arckg.cn/sysu-image/",
     sercet: "sysu-geokg"
   };
   

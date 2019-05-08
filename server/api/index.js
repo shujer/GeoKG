@@ -23,7 +23,7 @@ router.get('/getMapPoint', async (req, res, next) => {
       if (doc['has_picture'] && doc['has_picture'].length > 0) {
         data[key]['has_picture'] = `${config.imageURL}${doc['has_picture'][0]}`
       } else {
-        data[key]['has_picture'] = `${config.imageURL}/building-img-demo.jpg`
+        data[key]['has_picture'] = `/building-img-demo.jpg`
       }
     }
     return res.status(200).json({data: data})
