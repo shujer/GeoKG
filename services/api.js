@@ -9,7 +9,7 @@ export function getSearchResult(keyword) {
 
 export function getDatafromKG({name, view="graph", entity="BuildingComplex", query_layer=0}) {
     return Axios
-    .get("/tomcat/GeoKG/building", {params: {name, view, entity, query_layer}})
+    .get("/tomcat/building", {params: {name, view, entity, query_layer}})
     .then(({data}) => data)
     .catch(err => ({err}))
   }

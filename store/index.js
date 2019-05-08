@@ -60,12 +60,26 @@ export const mutations = {
   },
   SET_ROUTER: function(state, activeRouter) {
     state.activeRouter = activeRouter
-  },
+  }
 }
 
 export const actions = {
   async querySearchResult({state, commit}, {keyword}) {
-    let data = await api.getSearchResult(keyword)
-    commit('SET_SEARCH', processResult(data))
+    try {
+      let data = await api.getSearchResult(keyword)
+      commit('SET_SEARCH', processResult(data))
+    } catch (err) {
+      //
+    }
+  },
+  async queryMapData({state, commit}) {
+    try {
+      if(!state.mapData.length) {
+        let {data} = await api.getMapData()
+        commit('SET_MAP', data)
+      }
+    } catch (err) {
+      //
+    }
   }
 }

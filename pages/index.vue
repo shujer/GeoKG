@@ -6,7 +6,7 @@
           <Graph v-if="selected===0"/>
         </el-tab-pane>
         <el-tab-pane label="地图">
-          <Map v-if="selected===1"/>
+          <Map v-if="selected===1" :data="mapData" />
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -17,6 +17,8 @@
 <script>
 import Graph from '~/components/Graph.vue'
 import Map from '~/components/Map.vue'
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
   data() {
     return {
@@ -27,11 +29,18 @@ export default {
     Graph,
     Map
   },
-  methods: {
-    handleClick(tab, event) {
-      this.selected = Number(tab.index);
-    }
+  computed: {
+    ...mapGetters(['mapData'])
   },
+  mounted() {
+    this.queryMapData()
+  },
+  methods: {
+    ...mapActions(['queryMapData']),
+    handleClick(tab, event) {
+      this.selected = Number(tab.index)
+    }
+  }
 }
 </script>
 
@@ -49,7 +58,7 @@ export default {
 
 .el-tabs__content {
   width: 100%;
-  height: 450px !important;
+  height: 460px !important;
   overflow: hidden;
   height: 100%;
 }
