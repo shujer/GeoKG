@@ -23,6 +23,7 @@
     "vue-baidu-map": "^0.21.20"
   },
   "devDependencies": {
+    "babel-plugin-component": "^1.1.1",
     "nodemon": "^1.18.9"
   }
 }

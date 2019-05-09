@@ -5,7 +5,7 @@
         <Graph/>
       </el-tab-pane>
       <el-tab-pane label="地图">
-        <Map :points="mapData" v-if="this.selected===1" />
+        <Map :points="mapData" />
       </el-tab-pane>
     </el-tabs>
     <div id="table">

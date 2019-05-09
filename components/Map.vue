@@ -1,5 +1,5 @@
 <template>
-  <div id="map" ref="allmap" :style="{'height': height, 'width': width}"></div>
+  <div id="map" ref="allmap" :style="{'height': height, 'width': width, 'max-height':'500px'}"></div>
 </template>  
 <script>
 import {MP} from '~/utils/baidumap.js'
@@ -7,7 +7,8 @@ export default {
   data() {
     return {
       ak: 'agIYcxFrxnd5BKUZMqomPyCVUTWCq2pm',
-      map: null
+      map: null,
+      maxHeight:"600px"
     }
   },
   props: {
@@ -69,7 +70,7 @@ export default {
       MP(this.ak).then(BMap => {
         this.map = new BMap.Map(this.$refs.allmap)
         this.map.enableScrollWheelZoom(true)
-        let point = new BMap.Point(115.0, 23.0)
+        let point = new BMap.Point(113.0, 24.0)
         this.map.centerAndZoom(point, 8)
         this.map.addControl(new BMap.ScaleControl())
         this.map.addControl(new BMap.OverviewMapControl())
@@ -79,7 +80,7 @@ export default {
         this.map.addControl(top_right_navigation)
         this.map.enableInertialDragging()
         this.map.enableContinuousZoom()
-        this.map.setCurrentCity('广东')
+        this.map.setCurrentCity('广州')
         this.map.clearOverlays()
         this.addMarkers(this.points)
       })
@@ -87,8 +88,9 @@ export default {
   },
 
   mounted() {
+    this.loadMap()
     this.$nextTick(() => {
-      this.loadMap()
+     !this.map? this.loadMap() : undefined
     })
   }
 }

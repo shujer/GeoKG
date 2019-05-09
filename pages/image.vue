@@ -51,7 +51,7 @@ export default {
     try {
       this.get_image_list()
     } catch (e) {
-      console.log(e.message)
+      // console.log(e.message)
     }
   },
 
@@ -60,7 +60,7 @@ export default {
       try {
         let data = await getImageList()
         this.image_list = data.data
-        console.log(this.image_list)
+        // console.log(this.image_list)
       } catch (e) {
         console.log(e.message)
       }
@@ -82,9 +82,9 @@ export default {
       this.single_building_img.unshift(current_img)
     },
     currentImageCard(current_index, pre_index) {
-      console.log(current_index)
+      // console.log(current_index)
       this.current_image = this.single_building_img[current_index]
-      console.log(this.current_image)
+      // console.log(this.current_image)
     }
   }
 }

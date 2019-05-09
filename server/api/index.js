@@ -7,8 +7,6 @@ const BuildingModel = require('../models/building_complex')
 const BuildingPart = require('../models/building_part')
 const BuildingSingle = require('../models/building_single')
 
-console.log(config)
-
 mongoose.Promise = global.Promise
 mongoose.connect(config.mongodb.url, {useNewUrlParser: true})
 var db = mongoose.connection
