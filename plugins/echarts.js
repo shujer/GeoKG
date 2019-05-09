@@ -14,7 +14,6 @@ const install = function(Vue) {
           //画一条简单的线
           graph: function(id, name, categories, nodes, links) {
             this.echarts = this.echarts || {}
-            this.innerCount = 0
             this.echarts[name] = echarts.init(document.getElementById(id))
             this.echarts[name].clear()
             let option = {
@@ -120,7 +119,6 @@ const install = function(Vue) {
           },
           tree: function(id, name, treedata) {
             this.echarts = this.echarts || {}
-            this.innerCount = 0
             this.echarts[name] = echarts.init(document.getElementById(id))
             this.echarts[name].clear()
             let option = {

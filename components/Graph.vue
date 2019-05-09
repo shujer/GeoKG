@@ -31,7 +31,7 @@ export default {
     dataSource: function(val) {
       this.setGraph()
     },
-    graphType: function(val) {
+    graphName: function(val) {
       this.setGraph()
     }
   },

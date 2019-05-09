@@ -18,10 +18,9 @@ export default {
 }
 </script>
 <style>
-
 .el-header {
-    color: #5A9367;
-    padding: 0 10% 0 10%;
+  color: #5a9367;
+  padding: 0 10% 0 10%;
 }
 
 html {
@@ -77,24 +76,29 @@ html {
   color: #35495e !important;
 }
 
-ul {
-  padding: 0;
-  margin: 0;
-}
-
-li {
-    display: inline;
-    list-style: none;
-    display: inline;
-    text-decoration: none;
-}
-
 a {
-  color: #5A9367;
+  color: #5a9367;
 }
 
-a:active, a:visited, a:link, a:hover {
+a:active,
+a:visited,
+a:link,
+a:hover {
   color: #35495e;
+}
+.container {
+  width: 75%;
+  margin: 2rem auto 4rem auto;
+}
+.el-button--primary {
+  color: #fff;
+  background-color: #42b983;
+  border-color: #42b983;
+}
+.el-button--primary:hover {
+  color: #fff;
+  background-color: #5a9367;
+  border-color: #5a9367;
 }
 </style>
 

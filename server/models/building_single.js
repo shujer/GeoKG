@@ -26,6 +26,6 @@ const buildingSchema = new Schema({
 /**
  * @desc构建表模型
  */
-const BuildingModel = mongoose.model('BuildingSingle', buildingSchema, 'BuildingSingle');
+const BuildingModel = mongoose.model('Building', buildingSchema, 'Building');
 
 module.exports = BuildingModel;

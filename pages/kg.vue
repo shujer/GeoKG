@@ -1,5 +1,5 @@
 <template>
-  <div class="searchContainer">
+  <div class="container">
     <div class="search-form-container">
       <el-input placeholder="请搜索建筑领域知识" v-model="keyword" class="input-with-select" @keyup.enter.native="onSubmit">
         <el-button slot="append" icon="el-icon-search" @click="onSubmit"></el-button>
@@ -8,7 +8,7 @@
     <el-main v-loading="loading">
       <div v-if="searchData.length===0">暂无相关实体</div>
       <div v-for="(item, id) in searchData" :key="id" class="result-box" v-else>
-        <a  class="result-box-link" target="_blank" :href="getUrl(item)" >
+        <a class="result-box-link" target="_blank" :href="getUrl(item)">
           <h4>{{item.name}}
             <small class="text-mute">（{{en_cn_map[item.type]}}）</small>
           </h4>
@@ -23,6 +23,9 @@
 import {mapGetters, mapActions, mapMutations} from 'vuex'
 import en_cn_map from '~/utils/en_cn_map'
 export default {
+  head: {
+    title: 'Search | 搜索'
+  },
   computed: {
     ...mapGetters(['searchData'])
   },
@@ -46,7 +49,7 @@ export default {
     }
   },
   beforeDestroy() {
-    // this.SET_SEARCH([])
+    this.SET_SEARCH([])
   }
 }
 </script>

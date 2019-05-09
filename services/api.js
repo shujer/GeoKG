@@ -37,3 +37,9 @@ export function getImageList() {
     .catch(err => ({err}))
 }
 
+export function getEntityList() {
+  return Axios
+    .get('/api/getEntityList')
+    .then(({data}) => data)
+    .catch(err => ({err}))
+}

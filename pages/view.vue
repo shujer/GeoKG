@@ -1,5 +1,5 @@
 <template>
-  <div class="chartContainer">
+  <div class="container">
     <el-row :gutter="20">
       <el-col :span="19" id="kg" v-loading="loading">
         <Graph v-if="showType===0" :dataSource="kgdata" :key="showType+name" />
@@ -43,7 +43,7 @@ import {setTimeout, clearTimeout} from 'timers'
 
 export default {
   head: {
-    title: 'Detail | 建筑详情'
+    title: 'Detail | 图谱详情'
   },
 
   data() {
@@ -132,7 +132,9 @@ export default {
         if (kgdata) {
           this.kgdata = kgdata
         }
-      } catch (err) {}
+      } catch (err) {
+        this.$message.info('网络连接似乎有点问题，请重试')
+      }
       !this.relateEntity.length ? this.getTreeData() : undefined
     },
     async getMultiKGData() {
@@ -142,7 +144,9 @@ export default {
         if (multikgdata) {
           this.multikgdata = multikgdata
         }
-      } catch (err) {}
+      } catch (err) {
+        this.$message.info('网络连接似乎有点问题，请重试')
+      }
     },
     async getTreeData() {
       this.treedata = {}
@@ -158,7 +162,9 @@ export default {
           this.treedata = treedata
           this.relateEntity = relateEntity
         }
-      } catch (err) {}
+      } catch (err) {
+        this.$message.info('网络连接似乎有点问题，请重试')
+      }
     },
     onClick(index) {
       this.$router.push({
@@ -174,10 +180,6 @@ export default {
 </script>
 
 <style>
-.chartContainer {
-  width: 80%;
-  margin: 2rem auto 2rem auto;
-}
 #kg {
   height: 500px;
   overflow: hidden;

@@ -1,17 +1,15 @@
 <template>
-  <div>
-    <div id="preview">
-      <el-tabs type="border-card" tab-position="bottom" @tab-click="handleClick">
-        <el-tab-pane label="图谱">
-          <Graph/>
-        </el-tab-pane>
-        <el-tab-pane label="地图">
-          <Map :points="mapData"/>
-        </el-tab-pane>
-      </el-tabs>
-    </div>
+  <div class="container">
+    <el-tabs type="border-card" tab-position="bottom" @tab-click="handleClick">
+      <el-tab-pane label="图谱">
+        <Graph/>
+      </el-tab-pane>
+      <el-tab-pane label="地图">
+        <Map :points="mapData" v-if="this.selected===1" />
+      </el-tab-pane>
+    </el-tabs>
     <div id="table">
-      <Table :tableData="mapData"/>
+      <Table :tableData="mapData" />
     </div>
   </div>
 </template>
@@ -23,6 +21,9 @@ import Table from '~/components/Table.vue'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
+  head: {
+    title: 'Home | 首页'
+  },
   data() {
     return {
       selected: 0
@@ -49,9 +50,8 @@ export default {
 </script>
 
 <style>
-#preview, #table {
-  width: 75%;
-  margin: 2rem auto 2rem auto;
+#table {
+  margin-top: 3rem;
 }
 .el-tabs__nav-scroll {
   display: flex;

@@ -69,8 +69,8 @@ export default {
       MP(this.ak).then(BMap => {
         this.map = new BMap.Map(this.$refs.allmap)
         this.map.enableScrollWheelZoom(true)
-        let point = new BMap.Point(110.0, 25.0)
-        this.map.centerAndZoom(point, 7.5)
+        let point = new BMap.Point(115.0, 23.0)
+        this.map.centerAndZoom(point, 8)
         this.map.addControl(new BMap.ScaleControl())
         this.map.addControl(new BMap.OverviewMapControl())
         const top_right_navigation = new BMap.NavigationControl({
@@ -87,7 +87,9 @@ export default {
   },
 
   mounted() {
-    this.loadMap()
+    this.$nextTick(() => {
+      this.loadMap()
+    })
   }
 }
 </script>

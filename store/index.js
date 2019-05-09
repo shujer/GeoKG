@@ -19,7 +19,8 @@ export const state = {
     {title: '侨乡建筑', url: '/image'},
     {title: '关于我们', url: '/about'}
   ],
-  activeRouter: '0'
+  activeRouter: '0',
+  entityData: []
 }
 
 export const getters = {
@@ -41,6 +42,9 @@ export const getters = {
   },
   navList(state) {
     return state.navList
+  },
+  entityData(state) {
+    return state.entityData
   }
 }
 
@@ -59,6 +63,9 @@ export const mutations = {
   },
   SET_ROUTER: function(state, activeRouter) {
     state.activeRouter = activeRouter
+  },
+  SET_ENTITY: function(state, entityData) {
+    state.entityData = entityData
   }
 }
 
@@ -79,6 +86,17 @@ export const actions = {
       if (!state.mapData.length) {
         let {data} = await api.getMapData()
         commit('SET_MAP', data)
+      }
+    } catch (err) {
+      //
+    }
+  },
+  async queryEntityData({state, commit}) {
+    try {
+      if (!state.entityData.length) {
+        let {data} = await api.getEntityList()
+        // console.log(data)
+        commit('SET_ENTITY', data)
       }
     } catch (err) {
       //

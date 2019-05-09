@@ -63,4 +63,20 @@ router.get('/getImageList', async (req, res, next) => {
 })
 
 
+router.get('/getEntityList', async (req, res, next) => {
+  try {
+    let complex_data = await BuildingModel.find({},{name:1, type:1}).exec()
+    let part_data = await BuildingPart.find({},{name:1, type:1}).exec()
+    let single_data = await BuildingSingle.find({},{name:1, type:1}).exec()
+    let data = []
+    data.push({label:'建筑群',options:complex_data.map(val=>({type:'BuildingComplex',value:val['name'], label:val['name'], id:val['_id']}))})
+    data.push({label:'单体建筑',options:single_data.map(val=>({type:'Building',value:val['name'], label:val['name'], id:val['_id']}))})
+    data.push({label:'建筑结构',options:part_data.map(val=>({type:'BuildingPart',value:val['name'], label:val['name'], id:val['_id']}))})
+    return res.status(200).json({data})
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({message: 'get data from db failed!'})
+  }
+})
+
 module.exports = router
