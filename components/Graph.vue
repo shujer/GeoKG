@@ -1,12 +1,13 @@
 <template>
-  <div id="graph">
+  <div :id="graphName" :style="{'width':width,'height':height}">
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      myChart: null
+      width: "100%",
+      height:"100%"
     }
   },
   props: {
@@ -17,7 +18,7 @@ export default {
       type: Object
     },
     graphName: {
-      default: '',
+      default: 'graph',
       type: String
     }
   },
@@ -38,7 +39,7 @@ export default {
     setGraph() {
       if (this.dataSource.nodes) {
         this.$echarts.graph(
-          'graph',
+          this.graphName,
           this.graphName,
           this.dataSource.categories,
           this.dataSource.nodes,
@@ -51,8 +52,4 @@ export default {
 </script>
 
 <style>
-#graph {
-  width: 100%;
-  height: 100%;
-}
 </style>

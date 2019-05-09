@@ -13,8 +13,10 @@ const install = function(Vue) {
         return {
           //画一条简单的线
           graph: function(id, name, categories, nodes, links) {
-            this.echarts = echarts.init(document.getElementById(id))
-            this.echarts.clear()
+            this.echarts = this.echarts || {}
+            this.innerCount = 0
+            this.echarts[name] = echarts.init(document.getElementById(id))
+            this.echarts[name].clear()
             let option = {
               title: {
                 text: name,
@@ -112,13 +114,15 @@ const install = function(Vue) {
                   // 节点间关系数据
                   links: links
                 }
-              ]
+              ],   
             }
-            this.echarts.setOption(option)
+            this.echarts[name].setOption(option)
           },
           tree: function(id, name, treedata) {
-            this.echarts = echarts.init(document.getElementById(id))
-            this.echarts.clear()
+            this.echarts = this.echarts || {}
+            this.innerCount = 0
+            this.echarts[name] = echarts.init(document.getElementById(id))
+            this.echarts[name].clear()
             let option = {
               title: {
                 text: name
@@ -187,7 +191,7 @@ const install = function(Vue) {
                 }
               ]
             }
-            this.echarts.setOption(option)
+            this.echarts[name].setOption(option)
           }
         }
       }
