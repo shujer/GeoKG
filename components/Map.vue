@@ -87,9 +87,7 @@ export default {
   },
 
   mounted() {
-    this.$nextTick(() => {
-      this.loadMap()
-    })
+    this.loadMap()
   }
 }
 </script>
