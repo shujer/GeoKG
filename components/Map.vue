@@ -19,14 +19,14 @@ export default {
       type: String,
       default: '100%'
     },
-    data: {
+    points: {
       type: Array,
       default: []
     }
   },
   methods: {
     showMessage(point, i) {
-      let {name, has_picture} = this.data[i]
+      let {name, has_picture} = this.points[i]
       let href = `/view?name=${name}&entity=BuildingComplex`
       let opt = {
         width: 150,
@@ -69,8 +69,8 @@ export default {
       MP(this.ak).then(BMap => {
         this.map = new BMap.Map(this.$refs.allmap)
         this.map.enableScrollWheelZoom(true)
-        let point = new BMap.Point(115.0, 23.0)
-        this.map.centerAndZoom(point, 8)
+        let point = new BMap.Point(110.0, 25.0)
+        this.map.centerAndZoom(point, 7.5)
         this.map.addControl(new BMap.ScaleControl())
         this.map.addControl(new BMap.OverviewMapControl())
         const top_right_navigation = new BMap.NavigationControl({
@@ -81,13 +81,15 @@ export default {
         this.map.enableContinuousZoom()
         this.map.setCurrentCity('广东')
         this.map.clearOverlays()
-        this.addMarkers(this.data)
+        this.addMarkers(this.points)
       })
     }
   },
 
   mounted() {
-    this.loadMap()
+    this.$nextTick(() => {
+      this.loadMap()
+    })
   }
 }
 </script>

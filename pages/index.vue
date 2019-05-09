@@ -3,20 +3,23 @@
     <div id="preview">
       <el-tabs type="border-card" tab-position="bottom" @tab-click="handleClick">
         <el-tab-pane label="图谱">
-          <Graph v-if="selected===0"/>
+          <Graph/>
         </el-tab-pane>
         <el-tab-pane label="地图">
-          <Map v-if="selected===1" :data="mapData" />
+          <Map :points="mapData"/>
         </el-tab-pane>
       </el-tabs>
     </div>
-
+    <div id="table">
+      <Table :tableData="mapData"/>
+    </div>
   </div>
 </template>
 
 <script>
 import Graph from '~/components/Graph.vue'
 import Map from '~/components/Map.vue'
+import Table from '~/components/Table.vue'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
@@ -27,13 +30,14 @@ export default {
   },
   components: {
     Graph,
-    Map
+    Map,
+    Table
   },
   computed: {
     ...mapGetters(['mapData'])
   },
-  created() {
-    this.queryMapData()
+  async mounted() {
+    await this.queryMapData()
   },
   methods: {
     ...mapActions(['queryMapData']),
@@ -45,11 +49,10 @@ export default {
 </script>
 
 <style>
-#preview {
-  width: 70%;
+#preview, #table {
+  width: 75%;
   margin: 2rem auto 2rem auto;
 }
-
 .el-tabs__nav-scroll {
   display: flex;
   justify-content: center;

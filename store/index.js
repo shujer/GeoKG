@@ -1,6 +1,5 @@
 import * as api from '~/services/api'
 import {processResult} from '~/utils/resultHelper'
-
 export const state = {
   mapData: [],
   kgData: {
@@ -67,14 +66,17 @@ export const actions = {
   async querySearchResult({state, commit}, {keyword}) {
     try {
       let data = await api.getSearchResult(keyword)
-      commit('SET_SEARCH', processResult(data))
+      if (data) {
+        commit('SET_SEARCH', processResult(data))
+      }
     } catch (err) {
+      console.log(err)
       //
     }
   },
   async queryMapData({state, commit}) {
     try {
-      if(!state.mapData.length) {
+      if (!state.mapData.length) {
         let {data} = await api.getMapData()
         commit('SET_MAP', data)
       }

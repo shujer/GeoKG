@@ -21,9 +21,10 @@ export default {
     for (let i = 0; i < this.navList.length; i++) {
       if (this.$route.path === this.navList[i].url) {
         this.SET_ROUTER(i.toString())
-        break
+        return;
       }
     }
+    this.SET_ROUTER(null)
   },
   computed: {
     ...mapGetters(['navList', 'activeRouter'])
