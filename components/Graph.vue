@@ -15,6 +15,10 @@ export default {
         return {}
       },
       type: Object
+    },
+    graphName: {
+      default: '',
+      type: String
     }
   },
   mounted() {
@@ -35,7 +39,7 @@ export default {
       if (this.dataSource.nodes) {
         this.$echarts.graph(
           'graph',
-          'name',
+          this.graphName,
           this.dataSource.categories,
           this.dataSource.nodes,
           this.dataSource.links

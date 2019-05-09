@@ -6,12 +6,12 @@
           <Graph/>
         </el-tab-pane>
         <el-tab-pane label="地图">
-          <Map :data="mapData" />
+          <Map :points="mapData"/>
         </el-tab-pane>
       </el-tabs>
     </div>
     <div id="table">
-      <Table :data="mapData"/>
+      <Table :tableData="mapData"/>
     </div>
   </div>
 </template>

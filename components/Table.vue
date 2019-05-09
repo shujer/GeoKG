@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-table ref="filterTable" :data="data" style="width: 100%" height="500">
+        <el-table ref="filterTable" :data="tableData" style="width: 100%" height="500">
             <el-table-column prop="name" label="建筑名称" width="180" fixed>
             </el-table-column>
             <el-table-column prop="has_type" label="建筑类型" width="140" :formatter="formatter" :filters="types" :filter-method="filterType" filter-placement="bottom-end">
@@ -22,16 +22,16 @@ export default {
   computed: {
     types: function(val) {
       let types = new Set()
-      for (let i = 0; i < this.data.length; i++) {
-        if (this.data[i]['has_type'].length)
-          types.add(...this.data[i]['has_type'])
+      for (let i = 0; i < this.tableData.length; i++) {
+        if (this.tableData[i]['has_type'].length)
+          types.add(...this.tableData[i]['has_type'])
       }
       return [...types].map(val=>({text: val, value: val}))
     }
   },
 
   props: {
-    data: {
+    tableData: {
       type: Array,
       default: []
     }

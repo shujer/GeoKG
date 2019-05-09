@@ -1,7 +1,7 @@
 <template>
   <div class="chartContainer">
     <el-row :gutter="20">
-      <el-col :span="19" id="kg" v-loading="kgloading">
+      <el-col :span="19" id="kg" v-loading="loading">
         <Graph v-if="showType===0" :dataSource="kgdata" :key="showType+name" />
         <Graph v-if="showType===1" :dataSource="multikgdata" :key="showType+name" />
         <Tree v-if="showType===2" :dataSource="treedata" />
@@ -50,7 +50,7 @@ export default {
     return {
       name: null,
       entity: null,
-      kgloading: false,
+      loading: true,
       en_cn_map: {},
       showType: 0,
       myChart: {},
@@ -90,13 +90,22 @@ export default {
 
   watch: {
     $route: function(route) {
-      this.name = route.query.name
-      this.entity = route.query.entity
-      this.getKGData()
-      this.$nextTick(() => {
-        this.getMultiKGData()
-        this.getTreeData()
-      })
+      window.location.reload()
+    },
+    showType: function(val) {
+      this.loading = true
+      switch (this.showType) {
+        case 0:
+          !this.kgdata.nodes.length ? this.getKGData() : undefined
+          break
+        case 1:
+          !this.multikgdata.nodes.length ? this.getMultiKGData() : undefined
+          break
+        case 2:
+          !this.relateEntity.length ? this.getTreeData() : undefined
+          break
+      }
+      this.loading = false
     }
   },
 
@@ -108,10 +117,10 @@ export default {
   },
 
   mounted() {
-    this.getKGData()
+    this.loading = true
     this.$nextTick(() => {
-      this.getMultiKGData()
-      this.getTreeData()
+      this.getKGData()
+      this.loading = false
     })
   },
 
@@ -124,6 +133,7 @@ export default {
           this.kgdata = kgdata
         }
       } catch (err) {}
+      !this.relateEntity.length ? this.getTreeData() : undefined
     },
     async getMultiKGData() {
       try {

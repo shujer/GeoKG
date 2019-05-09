@@ -21,13 +21,13 @@ const install = function(Vue) {
                 show: true,
                 textStyle: {
                   fontStyle: 'normal',
-                  color: 'white'
+                  color: 'black'
                 }
               },
               backgroundColor: '#fff',
               toolbox: {
                 feature: {
-                  dataView: {show: true, readOnly: false},
+                  dataView: {show: false, readOnly: false},
                   restore: {show: true},
                   saveAsImage: {show: true}
                 }
@@ -129,7 +129,7 @@ const install = function(Vue) {
               },
               toolbox: {
                 feature: {
-                  dataView: {show: true, readOnly: false},
+                  dataView: {show: false, readOnly: false},
                   restore: {show: true},
                   saveAsImage: {show: true}
                 }

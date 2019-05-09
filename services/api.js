@@ -10,7 +10,8 @@ export function getDatafromKG(name,view = 'graph',entity = 'BuildingComplex',que
   return Axios({
     method: 'get',
     url: '/tomcat/building',
-    params: {name, view, entity, query_layer}
+    params: {name, view, entity, query_layer},
+    retry: 3
   })
     .then(({data}) => data)
     .catch(err => ({err}))

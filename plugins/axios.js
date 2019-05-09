@@ -7,7 +7,7 @@ let options = {
 }
 // The server-side needs a full url to works
 axios.defaults.retry = 3
-axios.defaults.retryDelay = 2500
+axios.defaults.retryDelay = 3000
 axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
   var config = err.config
   // If config does not exist or the retry option is not set, reject

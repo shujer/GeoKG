@@ -19,14 +19,14 @@ export default {
       type: String,
       default: '100%'
     },
-    data: {
+    points: {
       type: Array,
       default: []
     }
   },
   methods: {
     showMessage(point, i) {
-      let {name, has_picture} = this.data[i]
+      let {name, has_picture} = this.points[i]
       let href = `/view?name=${name}&entity=BuildingComplex`
       let opt = {
         width: 150,
@@ -81,7 +81,7 @@ export default {
         this.map.enableContinuousZoom()
         this.map.setCurrentCity('广东')
         this.map.clearOverlays()
-        this.addMarkers(this.data)
+        this.addMarkers(this.points)
       })
     }
   },
