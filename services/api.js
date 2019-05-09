@@ -20,3 +20,19 @@ export function getMapData() {
     .then(({data}) => data)
     .catch(err => ({err}))
 }
+
+export function getAboutUs() {
+  return Axios
+    .get('/tomcat/search')
+    .then(({data}) => data)
+    .catch(err => ({err}))
+}
+
+export function getImageList() {
+  return Axios
+    .get('/api/getImageList')
+    .then(({data}) => data)
+    .catch(err => ({err}))
+}
+
+

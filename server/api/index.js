@@ -4,6 +4,8 @@ const router = Router()
 const mongoose = require('mongoose')
 
 const BuildingModel = require('../models/building_complex')
+const BuildingPart = require('../models/building_part')
+const BuildingSingle = require('../models/building_single')
 
 console.log(config)
 
@@ -28,9 +30,37 @@ router.get('/getMapPoint', async (req, res, next) => {
     }
     return res.status(200).json({data: data})
   } catch (err) {
-      console.log(err)
+    console.log(err)
     return res.status(500).json({message: 'get data from db failed!'})
   }
 })
+
+
+router.get('/getImageList', async (req, res, next) => {
+  try {
+    let complex_data = await BuildingModel.find({}).exec()
+    let part_data = await BuildingPart.find({}).exec()
+    let single_data = await BuildingSingle.find({}).exec()
+    let building_list = complex_data.concat(part_data, single_data);
+    let img_list = []
+    for (let building_index in building_list) {
+      let doc = building_list[building_index];
+      if (doc['has_picture'] && doc['has_picture'].length > 0) {
+        for (let img_index = 0; img_index < doc['has_picture'].length; img_index++) {
+          img_list.push({
+            'name': doc['name'],
+            'belongTo': doc['has_picture'][img_index].split('/')[0],
+            'url': `${config.imageURL}${doc['has_picture'][img_index]}`
+          })
+        }
+      }
+    }
+    return res.status(200).json({data: img_list})
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({message: 'get data from db failed!'})
+  }
+})
+
 
 module.exports = router
