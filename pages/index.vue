@@ -2,7 +2,8 @@
   <div class="container">
     <el-tabs type="border-card" tab-position="bottom" @tab-click="handleClick">
       <el-tab-pane label="图谱">
-        <Graph/>
+        <!-- <Graph/> -->
+        <img src="/full.png" alt="all" class="graphImage"/>
       </el-tab-pane>
       <el-tab-pane label="地图">
         <Map :points="mapData" />
@@ -64,5 +65,10 @@ export default {
   height: 460px !important;
   overflow: hidden;
   height: 100%;
+}
+.graphImage {
+  width: 70%;
+  margin: auto auto;
+  margin: 0 15% 0 15%;
 }
 </style>

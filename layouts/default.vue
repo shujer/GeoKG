@@ -9,7 +9,7 @@
 <script>
 import Nav from '~/components/Nav.vue'
 import Logo from '~/components/Logo.vue'
-import '@/plugins/echarts'
+// import '@/plugins/echarts'
 export default {
   components: {
     Nav,
@@ -88,7 +88,7 @@ a:hover {
 }
 .container {
   width: 75%;
-  margin: 2rem auto 4rem auto;
+  margin: 4rem auto 4rem auto;
 }
 .el-button--primary {
   color: #fff;

@@ -1,16 +1,16 @@
 <template>
   <div class="container">
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
-      <el-form-item label="实体1">
-        <el-select v-model="formInline.entity1" placeholder="建筑实体2">
+      <el-form-item label="传统建筑1">
+        <el-select v-model="formInline.entity1" placeholder="传统建筑1">
           <el-option-group v-for="group in entityData" :key="group.label" :label="group.label">
             <el-option v-for="item in group.options" :key="item.value" :label="item.label" :value="item.id">
             </el-option>
           </el-option-group>
         </el-select>
       </el-form-item>
-      <el-form-item label="实体2">
-        <el-select v-model="formInline.entity2" placeholder="建筑实体2">
+      <el-form-item label="传统建筑2">
+        <el-select v-model="formInline.entity2" placeholder="传统建筑2">
           <el-option-group v-for="group in entityData" :key="group.label" :label="group.label">
             <el-option v-for="item in group.options" :key="item.value" :label="item.label" :value="item.id">
             </el-option>
@@ -50,8 +50,8 @@ export default {
       name1: 'entity1',
       name2: 'entity2',
       formInline: {
-        entity1: '',
-        entity2: ''
+        entity1: '梁园',
+        entity2: '西关大屋'
       },
       loading: false,
       kgdata1: {
@@ -79,6 +79,7 @@ export default {
 
   mounted() {
     this.queryEntityData()
+    this.getKGData("梁园","BuildingComplex","西关大屋", "BuildingComplex")
   },
 
   methods: {

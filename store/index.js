@@ -93,11 +93,8 @@ export const actions = {
   },
   async queryEntityData({state, commit}) {
     try {
-      if (!state.entityData.length) {
         let {data} = await api.getEntityList()
-        // console.log(data)
         commit('SET_ENTITY', data)
-      }
     } catch (err) {
       //
     }

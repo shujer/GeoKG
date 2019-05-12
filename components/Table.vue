@@ -1,20 +1,32 @@
 <template>
-    <div>
-        <el-table ref="filterTable" :data="tableData" style="width: 100%" height="500">
-            <el-table-column prop="name" label="建筑名称" width="180" fixed>
-            </el-table-column>
-            <el-table-column prop="has_type" label="建筑类型" width="140" :formatter="formatter" :filters="types" :filter-method="filterType" filter-placement="bottom-end">
-            </el-table-column>
-            <el-table-column prop="address" label="建筑位置" width="200" :formatter="formatter">
-            </el-table-column>
-            <el-table-column prop="built_year" label="建筑年代" width="150" :formatter="formatter">
-            </el-table-column>
-            <el-table-column prop="region" label="地区" width="180" :formatter="formatter">
-            </el-table-column>
-            <el-table-column prop="description" label="描述" width="500" :formatter="formatter">
-            </el-table-column>
-        </el-table>
-    </div>
+  <div>
+    <el-table ref="filterTable" :data="tableData" style="width: 100%" stripe>
+      <el-table-column fixed type="expand">
+        <template slot-scope="props">
+          <el-form label-position="left" inline class="demo-table-expand">
+            <el-form-item label="建筑位置">
+              <span>{{ props.row.address }}</span>
+            </el-form-item>
+            <el-form-item label="建筑年代">
+              <span>{{ props.row.built_year }}</span>
+            </el-form-item>
+            <el-form-item label="地区">
+              <span>{{ props.row.region }}</span>
+            </el-form-item>
+            <el-form-item label="描述">
+              <span>{{ props.row.description }}</span>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
+      <el-table-column prop="name" label="建筑名称" :formatter="formatter" :filters="types" :filter-method="filterType" filter-placement="bottom-end">
+      </el-table-column>
+      <el-table-column prop="has_type" label="建筑类型" :formatter="formatter" :filters="types" :filter-method="filterType" filter-placement="bottom-end">
+      </el-table-column>
+      <el-table-column prop="region" label="地区" :formatter="formatter">
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
@@ -26,7 +38,7 @@ export default {
         if (this.tableData[i]['has_type'].length)
           types.add(...this.tableData[i]['has_type'])
       }
-      return [...types].map(val=>({text: val, value: val}))
+      return [...types].map(val => ({text: val, value: val}))
     }
   },
 
