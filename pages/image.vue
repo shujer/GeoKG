@@ -12,14 +12,14 @@
       </div>
 
       <el-row :gutter="20">
-        <el-col :span="17">
-          <el-carousel @change="currentImageCard" trigger="click" height="480px" :autoplay=false :loop=true indicator-position="outside" style="text-align: center">
+        <el-col :span="18">
+          <el-carousel type="card" @change="currentImageCard" trigger="click" height="480px" :autoplay=false :loop=true indicator-position="outside" style="text-align: center">
             <el-carousel-item v-for="(item, index) in single_building_img" :key="index">
               <el-image class="" :src=item.url fit="fill"></el-image>
             </el-carousel-item>
           </el-carousel>
         </el-col>
-        <el-col :span="7">
+        <el-col :span="6">
           <div class="image-info">
             <p>
               <span class="start">图片内容：</span>{{current_image.name}}</p>
@@ -136,7 +136,7 @@ export default {
   border: 1px solid darkgreen;
   border-radius: 40px;
   padding-top: 30px;
-  padding-left: 20px;
+  padding-left: 10px;
   line-height: 50px;
 }
 .back-button {
