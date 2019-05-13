@@ -24,7 +24,7 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
 import en_cn_map from '~/utils/en_cn_map'
 export default {
   head: {
-    title: 'Search | 搜索'
+    title: '岭南侨乡建筑知识图谱 | 搜索'
   },
   computed: {
     ...mapGetters(['searchData'])

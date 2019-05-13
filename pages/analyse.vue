@@ -38,7 +38,7 @@ import {getDatafromKG} from '~/services/api'
 
 export default {
   head: {
-    title: 'Analyse | 图谱分析'
+    title: '岭南侨乡建筑知识图谱 | 图谱分析'
   },
 
   computed: {
