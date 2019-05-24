@@ -190,6 +190,112 @@ function install(Vue) {
               ]
             }
             this.echarts[name].setOption(option)
+          },
+          pie: function(id, name, data, piedata) {
+            this.echarts = this.echarts || {}
+            this.echarts[id] = echarts.init(document.getElementById(id))
+            this.echarts[id].clear()
+            let option = {
+              title: {
+                text: name,
+                x: 'center'
+              },
+              tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+              },
+              legend: {
+                orient: 'vertical',
+                x: 'left',
+                data
+                //data:['广府侨乡','五邑侨乡','潮汕侨乡','东江兴梅侨乡','琼东北侨乡','桂东南侨乡']
+              },
+              toolbox: {
+                show: true,
+                feature: {
+                  mark: {show: true},
+                  dataView: {show: true, readOnly: false},
+                  magicType: {
+                    show: true,
+                    type: ['pie', 'funnel'],
+                    option: {
+                      funnel: {
+                        x: '25%',
+                        width: '50%',
+                        funnelAlign: 'left',
+                        max: 1548
+                      }
+                    }
+                  },
+                  restore: {show: true},
+                  saveAsImage: {show: true}
+                }
+              },
+              calculable: true,
+              series: [
+                {
+                  name: name,
+                  type: 'pie',
+                  radius: '55%',
+                  center: ['50%', '60%'],
+                  data: piedata
+                }
+              ]
+            }
+            this.echarts[id].setOption(option)
+          },
+          line: function(id, name, legend, data) {
+            this.echarts = this.echarts || {}
+            this.echarts[id] = echarts.init(document.getElementById(id))
+            this.echarts[id].clear()
+            let option = {
+              title: {
+                text: name,
+                x: 'center'
+              },
+              tooltip: {
+                trigger: 'axis'
+              },
+              legend: {
+                data: legend
+              },
+              toolbox: {
+                show: true,
+                feature: {
+                  mark: {show: true},
+                  dataView: {show: true, readOnly: false},
+                  magicType: {show: true, type: ['line', 'bar']},
+                  restore: {show: true},
+                  saveAsImage: {show: true}
+                }
+              },
+              calculable: true,
+              xAxis: [
+                {
+                  type: 'category',
+                  data: legend
+                }
+              ],
+              yAxis: [
+                {
+                  type: 'value'
+                }
+              ],
+              series: [
+                {
+                  name: '总数',
+                  type: 'bar',
+                  data:data,
+                  markPoint: {
+                    data: [
+                      {type: 'max', name: '最大值'},
+                      {type: 'min', name: '最小值'}
+                    ]
+                  }
+                }
+              ]
+            }
+            this.echarts[id].setOption(option)
           }
         }
       }
