@@ -3,13 +3,16 @@
     <div class="info_block">
       <p class="div_name">{{info_list.hometown_category.name}}</p>
       <p class="intro">{{info_list.hometown_category.introduction}}</p>
-      <el-image :src="info_list.hometown_category.img_url">
-        <div slot="placeholder" class="image-slot">
-          加载中
-          <span class="dot">...</span>
-        </div>
-      </el-image>
-      <p class="start">详细信息</p>
+      <div class="image-view">
+        <el-image :src="info_list.hometown_category.img_url" style="width: 85%; height: 65%">
+          <div slot="placeholder" class="image-slot">
+            加载中
+            <span class="dot">...</span>
+          </div>
+        </el-image>
+      </div>
+
+      <p class="start">侨乡信息（左侧按钮点击查看）</p>
       <el-table :data="info_list.hometown_category.category" style="width: 100%" class="category_list">
         <el-table-column type="expand">
           <template slot-scope="props">
@@ -17,18 +20,23 @@
               <el-form-item label="简称">
                 <span>{{ props.row.abbr }}</span>
               </el-form-item>
+              <br />
               <el-form-item label="主要侨居地">
                 <span>{{ props.row.foreign_residence }}</span>
               </el-form-item>
+              <br />
               <el-form-item label="简介">
                 <span>{{ props.row.introduction }}</span>
               </el-form-item>
+              <br />
               <el-form-item label="重点侨乡">
                 <span>{{ props.row.important_place }}</span>
               </el-form-item>
+              <br />
               <el-form-item label="一般侨乡">
                 <span>{{ props.row.normal_place }}</span>
               </el-form-item>
+              <br />
             </el-form>
           </template>
         </el-table-column>
@@ -42,12 +50,14 @@
     <div class="info_block">
       <p class="div_name">{{info_list.hometown_move.name}}</p>
       <p class="intro">{{info_list.hometown_move.introduction}}</p>
-      <el-image :src="info_list.hometown_move.img_url">
-        <div slot="placeholder" class="image-slot">
-          加载中
-          <span class="dot">...</span>
-        </div>
-      </el-image>
+      <div class="image-view">
+        <el-image :src="info_list.hometown_move.img_url" style="width: 85%; height: 65%">
+          <div slot="placeholder" class="image-slot">
+            加载中
+            <span class="dot">...</span>
+          </div>
+        </el-image>
+      </div>
     </div>
   </div>
 </template>
@@ -55,7 +65,7 @@
 <script>
 export default {
   head: {
-    title: 'Overview | 岭南建筑'
+    title: '岭南侨乡建筑知识图谱 | 岭南建筑'
   },
   name: 'overview',
   data() {
@@ -142,14 +152,14 @@ export default {
     margin: 3rem auto 0 auto;
   } */
 .div_name {
-  font-size: 28px;
-  font-family: 'Microsoft YaHei UI', 'serif';
+  font-size: 30px;
   color: darkgreen;
   display: block;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid darkgreen;
-  letter-spacing: 7px;
+  letter-spacing: 1px;
+  font-weight: bold;
   word-spacing: 7px;
 }
 .intro {
@@ -161,12 +171,14 @@ export default {
   list-style-type: armenian;
   font-size: 16px;
   letter-spacing: 1px;
+  color: black;
 }
 .start {
   margin: 2rem 0 1rem 0;
-  font-size: 23px;
-  font-weight: bolder;
+  font-size: 20px;
+  font-weight: bold;
   color: darkgreen;
+  letter-spacing: 1px;
 }
 
 .demo-table-expand {
@@ -192,4 +204,9 @@ export default {
 .info_block {
   margin-bottom: 5rem;
 }
+
+  .image-view {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
 </style>

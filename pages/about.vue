@@ -7,9 +7,9 @@
           <span class="start">个人简介：</span>{{item.introduction}}</p>
       </div>
       <div class="card_part">
-        <p class="start">相关工作</p>
+        <p class="start">相关工作：</p>
         <el-table :data="item.experience" style="width: 100%" class="work_list">
-          <el-table-column prop="intro" label=""></el-table-column>
+          <el-table-column prop="intro" label="按时间顺序列举"></el-table-column>
         </el-table>
       </div>
 
@@ -21,13 +21,13 @@
 export default {
   name: 'aboutUs',
   head: {
-    title: 'About | 关于我们'
+    title: '岭南侨乡建筑知识图谱 | 关于我们'
   },
   data() {
     return {
       info_list: [
         {
-          name: '曾娟（中山大学副教授）',
+          name: '曾娟（中山大学地理科学与规划学院副教授）',
           introduction:
             '曾娟在攻读博士期间，师从导师陈薇教授（东南大学建筑学院建筑历史与理论，国家重点学科），参与导师主持的国家自然科学基金“中国古代建筑材料应用发展史”（项目批准号：50878043），并且担任“广东传统建筑材料研究”子课题负责人，在岭南建筑研究方面积累较多的基础。',
           experience: [
@@ -77,20 +77,21 @@ export default {
   margin: 0 0 3rem 0;
 }
 .person_name {
-  font-size: 28px;
-  font-family: 'Microsoft YaHei UI', 'serif';
+  font-size: 30px;
   color: darkgreen;
   display: block;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid darkgreen;
-  letter-spacing: 7px;
+  letter-spacing: 1px;
+  font-weight: bold;
   word-spacing: 7px;
 }
 .start {
-  font-size: 21px;
+  font-size: 20px;
   font-weight: bolder;
   color: darkgreen;
+  letter-spacing: 1px;
 }
 .person_intro {
   font-size: 18px;
@@ -101,7 +102,8 @@ export default {
 }
 .work_list {
   font-size: 18px;
-  line-height: 48px;
+  line-height: 50px;
   letter-spacing: 1px;
+  color:black;
 }
 </style>

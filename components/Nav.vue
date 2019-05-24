@@ -1,8 +1,8 @@
 <template>
   <div class="navList">
     <el-menu :default-active="activeRouter" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <div style="width:35%" key="-1" index="-1">
-        岭南侨乡传统建筑
+      <div style="width:35%; font-size: 20px; font-weight: bold" key="-1" index="-1">
+        岭南侨乡建筑知识图谱
       </div>
       <el-menu-item v-for="(item, id) in navList" :key="id" :index="id.toString()">
         {{item.title}}

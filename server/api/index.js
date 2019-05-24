@@ -48,7 +48,8 @@ router.get('/getImageList', async (req, res, next) => {
           img_list.push({
             'name': doc['name'],
             'belongTo': doc['has_picture'][img_index].split('/')[0],
-            'url': `${config.imageURL}${doc['has_picture'][img_index]}`
+            'url': `${config.imageURL}${doc['has_picture'][img_index]}`,
+            'type': (doc['type'] === '建筑群') ? 'BuildingComplex' : ((doc['type'] === '单体建筑') ? 'Building' : 'BuildingPart'),
           })
         }
       }

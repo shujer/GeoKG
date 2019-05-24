@@ -43,7 +43,7 @@ import {setTimeout, clearTimeout} from 'timers'
 
 export default {
   head: {
-    title: 'Detail | 图谱详情'
+    title: '岭南侨乡建筑知识图谱 | 图谱详情'
   },
 
   data() {

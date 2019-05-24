@@ -8,12 +8,12 @@
     </div>
     <div v-if="allBuilding === 1" style="width: 100%;">
       <div class="back-button">
-        <el-button type="success" icon="el-icon-arrow-left" circle @click="allBuilding = 0"></el-button>
+        <el-button round icon="el-icon-arrow-left" @click="allBuilding = 0" style="border: 1px solid darkgreen; color: black">返回</el-button>
       </div>
 
       <el-row :gutter="20">
         <el-col :span="18">
-          <el-carousel @change="currentImageCard" trigger="click" height="480px" :autoplay=false :loop=true indicator-position="outside">
+          <el-carousel type="card" @change="currentImageCard" trigger="click" height="480px" :autoplay=false :loop=true indicator-position="outside" style="text-align: center">
             <el-carousel-item v-for="(item, index) in single_building_img" :key="index">
               <el-image class="" :src=item.url fit="fill"></el-image>
             </el-carousel-item>
@@ -25,6 +25,11 @@
               <span class="start">图片内容：</span>{{current_image.name}}</p>
             <p>
               <span class="start">所属建筑群：</span>{{current_image.belongTo}}</p>
+            <p>
+              <span class="start">建筑群图片数量：</span>{{single_building_img.length}}张</p>
+            <a class="result-box-link start" target="_blank" :href="getUrl(current_image)">
+              点击查看图谱
+            </a>
           </div>
         </el-col>
       </el-row>
@@ -37,7 +42,7 @@
 import {getImageList, getImageListByName} from '~/services/api.js'
 export default {
   head: {
-    title: 'Building | 侨乡建筑'
+    title: '岭南侨乡建筑知识图谱 | 侨乡建筑'
   },
   data() {
     return {
@@ -85,6 +90,9 @@ export default {
       // console.log(current_index)
       this.current_image = this.single_building_img[current_index]
       // console.log(this.current_image)
+    },
+    getUrl(item) {
+      return `/view?name=${item['name']}&entity=${item['type']}`
     }
   }
 }
@@ -106,6 +114,7 @@ export default {
 }
 .img {
   width: 100%;
+  cursor: pointer;
 }
 .item-name {
   font-weight: bold;
@@ -113,6 +122,7 @@ export default {
   font-family: 'Microsoft YaHei UI', 'sans-serif';
   padding: 5px 0 20px 0;
   text-align: center;
+  cursor: pointer;
 }
 .image-carousel {
   margin: auto auto;
@@ -126,15 +136,38 @@ export default {
   border: 1px solid darkgreen;
   border-radius: 40px;
   padding-top: 30px;
-  padding-left: 20px;
+  padding-left: 10px;
   line-height: 50px;
 }
 .back-button {
   margin: 0 0 2rem 0;
 }
 .start {
-  font-size: 20px;
-  font-weight: bolder;
+  font-size: 18px;
+  font-weight: bold;
   color: darkgreen;
 }
+.result-box-link {
+  cursor: pointer;
+  color: darkgreen;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  position: relative;
+  bottom: 0px;
+  margin-left: -20px;
+  margin-top: 30px;
+  letter-spacing: 1px;
+}
+.result-box-link:hover {
+  cursor: pointer;
+  color: darkgreen;
+  text-decoration: none;
+}
+.result-box-link:visited {
+  cursor: pointer;
+  color: darkgreen;
+  text-decoration: none;
+}
+
 </style>
