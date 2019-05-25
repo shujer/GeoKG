@@ -2,8 +2,8 @@
   <div class="navList">
     <el-menu :default-active="activeRouter" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <div class="logo" key="-1" index="-1">
-      <img src="/logo.jpg" alt="logo" width="60" height="60" />
-        <h1>岭南侨乡建筑知识图谱</h1>
+        <img src="/logo.jpg" alt="logo" width="60" height="60" />
+        <div>岭南侨乡建筑知识图谱</div>
       </div>
       <el-menu-item v-for="(item, id) in navList" :key="id" :index="id.toString()">
         {{item.title}}
@@ -37,9 +37,10 @@ export default {
     ...mapMutations(['SET_ROUTER']),
     handleSelect(key, keyPath) {
       if (key < 0) key = 0
-      this.$router.push({
-        path: this.navList[key].url
-      })
+      this.$router
+        .push({
+          path: this.navList[key].url
+        })
     }
   }
 }
@@ -47,14 +48,16 @@ export default {
 
 <style>
 .logo {
-  /* width: 35%; */
+  width: 35%;
   display: inline-flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  font-size: 22px;
 }
 .navList {
   height: 80px;
   line-height: 80px;
+  font-weight: 600;
 }
 .navList ul {
   display: flex;
@@ -66,6 +69,7 @@ export default {
 .navList .el-menu-item {
   font-size: 16px;
   color: #5a9367;
+  outline: none;
 }
 .el-menu-item {
   height: 80px !important;

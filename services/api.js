@@ -17,6 +17,16 @@ export function getDatafromKG(name,view = 'graph',entity = 'BuildingComplex',que
     .catch(err => ({err}))
 }
 
+export function getAllDatafromKG() {
+  return Axios({
+    method: 'get',
+    url: '/tomcat/viewAll',
+    retry: 3
+  })
+    .then(({data}) => data)
+    .catch(err => ({err}))
+}
+
 export function getMapData() {
   return Axios.get('/api/getMapPoint')
     .then(({data}) => data)

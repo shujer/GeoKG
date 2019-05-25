@@ -13,7 +13,7 @@
 
       <el-row :gutter="20">
         <el-col :span="18">
-          <el-carousel type="card" @change="currentImageCard" trigger="click" height="480px" :autoplay=false :loop=true indicator-position="outside" style="text-align: center">
+          <el-carousel type="card" @change="currentImageCard" trigger="click" height="480px" :autoplay=false :loop=false indicator-position="outside" style="text-align: center">
             <el-carousel-item v-for="(item, index) in single_building_img" :key="index">
               <el-image class="" :src=item.url fit="fill"></el-image>
             </el-carousel-item>

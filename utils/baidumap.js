@@ -5,12 +5,10 @@ export function MP(ak) {
   return new Promise(function(resolve, reject) {
     if (typeof BMap !== 'undefined') {
       resolve(BMap)
-      return true
     }
     window.onload = function() {
       resolve(BMap)
     }
-
     var script = document.createElement('script')
     script.type = 'text/javascript'
     script.src =

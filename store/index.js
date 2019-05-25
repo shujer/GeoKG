@@ -1,6 +1,7 @@
 import * as api from '~/services/api'
 import {processResult} from '~/utils/resultHelper'
-export const state = {
+import kgdata from '~/utils/kgdata'
+export const state = () => ({
   mapData: [],
   kgData: {
     name: '',
@@ -11,6 +12,11 @@ export const state = {
   },
   tableData: [],
   searchData: [],
+  graphData: {
+    nodes: [],
+    links: [],
+    categories: []
+  },
   navList: [
     {title: '首页', url: '/'},
     {title: '知识图谱', url: '/kg'},
@@ -21,7 +27,7 @@ export const state = {
   ],
   activeRouter: '0',
   entityData: []
-}
+})
 
 export const getters = {
   //需要传个形参，用来获取 state 属性
@@ -45,6 +51,9 @@ export const getters = {
   },
   entityData(state) {
     return state.entityData
+  },
+  graphData(state) {
+    return state.graphData
   }
 }
 
@@ -66,6 +75,9 @@ export const mutations = {
   },
   SET_ENTITY: function(state, entityData) {
     state.entityData = entityData
+  },
+  SET_GRAPH: function(state, graphData) {
+    state.graphData = graphData
   }
 }
 
@@ -86,6 +98,19 @@ export const actions = {
       if (!state.mapData.length) {
         let {data} = await api.getMapData()
         commit('SET_MAP', data)
+      } else {
+        commit('SET_MAP', state.mapData)
+      }
+    } catch (err) {
+      //
+    }
+  },
+  async queryGraphData({state, commit}) {
+    try {
+      if (!state.graphData.nodes.length) {
+        commit('SET_GRAPH', kgdata)
+      } else {
+        commit('SET_GRAPH', state.graphData)
       }
     } catch (err) {
       //
@@ -93,8 +118,8 @@ export const actions = {
   },
   async queryEntityData({state, commit}) {
     try {
-        let {data} = await api.getEntityList()
-        commit('SET_ENTITY', data)
+      let {data} = await api.getEntityList()
+      commit('SET_ENTITY', data)
     } catch (err) {
       //
     }

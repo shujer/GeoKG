@@ -1,15 +1,9 @@
 <template>
-  <div :id="graphName" :style="{'width':width,'height':height}">
+  <div :id="graphName" :style="{width, height}">
   </div>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      width: "100%",
-      height:"100%"
-    }
-  },
   props: {
     dataSource: {
       default: function() {
@@ -19,6 +13,14 @@ export default {
     },
     graphName: {
       default: 'graph',
+      type: String
+    },
+    height: {
+      default: '100%',
+      type: String
+    },
+    width: {
+      default: '100%',
       type: String
     }
   },

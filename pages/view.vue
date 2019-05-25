@@ -90,7 +90,27 @@ export default {
 
   watch: {
     $route: function(route) {
-      window.location.reload()
+      // window.location.reload()
+      this.name = route.query.name,
+      this.entity = route.query.entity
+      this.kgdata = {
+        nodes: [],
+        links: [],
+        categories: []
+      }
+      this.multikgdata = {
+        nodes: [],
+        links: [],
+        categories: []
+      }
+      this.treedata = {}
+      this.relateEntity = []
+      this.loading = true
+      this.showType = 0
+      this.$nextTick(() => {
+        this.getKGData()
+        this.loading = false
+      })
     },
     showType: function(val) {
       this.loading = true

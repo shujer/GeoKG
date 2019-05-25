@@ -87,7 +87,7 @@ a:hover {
   color: #35495e;
 }
 .container {
-  width: 75%;
+  width: 80%;
   margin: 4rem auto 4rem auto;
 }
 .el-button--primary {
