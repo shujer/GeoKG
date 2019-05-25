@@ -1,8 +1,9 @@
 <template>
   <div class="navList">
     <el-menu :default-active="activeRouter" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <div style="width:35%; font-size: 20px; font-weight: bold" key="-1" index="-1">
-        岭南侨乡建筑知识图谱
+      <div class="logo" key="-1" index="-1">
+      <img src="/logo.jpg" alt="logo" width="60" height="60" />
+        <h1>岭南侨乡建筑知识图谱</h1>
       </div>
       <el-menu-item v-for="(item, id) in navList" :key="id" :index="id.toString()">
         {{item.title}}
@@ -45,6 +46,12 @@ export default {
 </script>
 
 <style>
+.logo {
+  /* width: 35%; */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
 .navList {
   height: 80px;
   line-height: 80px;
