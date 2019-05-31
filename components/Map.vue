@@ -430,7 +430,6 @@ export default {
       default: '100%'
     }
   },
-
   methods: {
     showMessage(point, i) {
       let {name, has_picture} = this.mapData[i]
@@ -474,25 +473,7 @@ export default {
 
     initialMap(BMap) {
       this.map = new BMap.Map(document.querySelector('#map'))
-      this.map.enableScrollWheelZoom(true)
-      let point = new BMap.Point(113.0, 24.0)
-      this.map.centerAndZoom(point, 8)
-      this.map.addControl(new BMap.ScaleControl())
-      this.map.addControl(new BMap.OverviewMapControl())
-      const top_right_navigation = new BMap.NavigationControl({
-        anchor: BMAP_ANCHOR_TOP_RIGHT
-      })
-      this.map.addControl(top_right_navigation)
-      this.map.enableInertialDragging()
-      this.map.enableContinuousZoom()
-      this.map.setCurrentCity('广州')
-      this.map.clearOverlays()
-      this.addMarkers(this.mapData)
-    },
-
-    loadMap() {
-      try {
-        this.map = new BMap.Map(document.querySelector('#map'))
+      this.$nextTick(() => {
         this.map.enableScrollWheelZoom(true)
         let point = new BMap.Point(113.0, 24.0)
         this.map.centerAndZoom(point, 8)
@@ -506,18 +487,21 @@ export default {
         this.map.enableContinuousZoom()
         this.map.setCurrentCity('广州')
         this.map.clearOverlays()
-      } catch (err) {
-        MP(this.ak).then(BMap => {
-          this.initialMap(BMap)
-        })
-      }
+        this.addMarkers(this.mapData)
+      })
+    },
+
+    loadMap() {
+      MP(this.ak).then(BMap => {
+        this.initialMap(BMap)
+      }).catch(err =>{
+        console.error(err);
+      })
     }
   },
 
   mounted() {
-    this.$nextTick(() => {
-      this.loadMap()
-    })
+    this.loadMap()
   }
 }
 </script>

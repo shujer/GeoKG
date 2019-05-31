@@ -5,7 +5,7 @@
         <Graph :dataSource="graphData" graphName="知识图谱" :height="graphheight" />
       </el-tab-pane>
       <el-tab-pane label="地图">
-        <Map/>
+        <Map :key="selected"/>
       </el-tab-pane>
     </el-tabs>
     <div style="border-right: 0.5px dashed gray; border-bottom: 0.5px dashed gray;">
