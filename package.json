@@ -22,7 +22,7 @@
     "mongoose": "^5.5.6",
     "nuxt": "^2.4.0",
     "vue-baidu-map": "^0.21.20",
-    "xlsx": "^0.14.3",
+    "xlsx": "^0.17.0",
     "vuex": "latest"
   },
   "devDependencies": {
